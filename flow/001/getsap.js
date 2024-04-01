@@ -63,7 +63,7 @@ router.post('/getsap/getincomming', async (req, res) => {
 
   }
 
-  // console.log(output)
+  console.log(output)
 
 
 
