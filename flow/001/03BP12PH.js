@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-let mongodb = require('../../function/mongodbGWGAS');
+let mongodb = require('../../function/mongodbBP12PH');
 var axios = require('axios');
 
 let masterDB = "master_IC";
@@ -29,9 +29,9 @@ let MAIN = "MAIN";
 const d = new Date();
 let day = d;
 
-router.post('/02GWGAS/getmaster', async (req, res) => {
+router.post('/03BP12PH/getmaster', async (req, res) => {
   //-------------------------------------
-  console.log("----02GWGAS/getmaster----");
+  console.log("----03BP12PH/getmaster----");
   console.log(req.body);
   let input = req.body;
   let find1 = [];
@@ -70,9 +70,9 @@ router.post('/02GWGAS/getmaster', async (req, res) => {
 });
 
 
-router.post('/02GWGAS/GETdata', async (req, res) => {
+router.post('/03BP12PH/GETdata', async (req, res) => {
   //-------------------------------------
-  console.log("----02GWGAS/GETdata----");
+  console.log("----03BP12PH/GETdata----");
   console.log(req.body);
   let input = req.body;
 
@@ -88,9 +88,9 @@ router.post('/02GWGAS/GETdata', async (req, res) => {
   return res.json(output);
 });
 
-router.post('/02GWGAS/SETgood', async (req, res) => {
+router.post('/03BP12PH/SETgood', async (req, res) => {
   //-------------------------------------
-  console.log("----02GWGAS/SETgood----");
+  console.log("----03BP12PH/SETgood----");
   console.log(req.body);
   let input = req.body;
 
@@ -206,9 +206,9 @@ router.post('/02GWGAS/SETgood', async (req, res) => {
   return res.json(output);
 });
 
-router.post('/02GWGAS/test', async (req, res) => {
+router.post('/03BP12PH/test', async (req, res) => {
   //-------------------------------------
-  console.log("----02GWGAS/test----");
+  console.log("----03BP12PH/test----");
   console.log(req.body);
   let input = req.body;
 
