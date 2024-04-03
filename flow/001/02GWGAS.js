@@ -244,24 +244,28 @@ async function completedata(CHARG, CUST_LOT) {
     }
     console.log(gogo);
     if (gogo) {
-      request.post(
-        'http://tp-portal.thaiparker.co.th/API_QcReport/ZBAPI_getZPPIN006_IN',
-        {
-          json: {
-            "PERNR_ID": "158907",
-            "AUARTID": "ZGW1",
-            "P_MATNR": `0000000000${DATA[0]['MBLNR']}`,
-            "P_CHARG": `${CHARG}`,
-            "P_BWART": "321"
-          }
+      console.log(DATA[0])
+      console.log(`0000000000${DATA[0]['MATNR']}`)
+      console.log(CHARG)
+      // request.post(
+      //   'http://tp-portal.thaiparker.co.th/API_QcReport/ZBAPI_getZPPIN006_IN',
+      //   {
+      //     json: {
+      //       "PERNR_ID": "158907",
+      //       "AUARTID": "ZGW1",
+      //       "P_MATNR": `0000000000${DATA[0]['MATNR']}`,
+      //       "P_CHARG": `${CHARG}`,
+      //       "P_BWART": "321"
+      //     }
   
-        },
-        function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-            console.log(body);
-          }
-        }
-      );
+      //   },
+    
+      //   function (error, response, body) {
+      //     if (!error && response.statusCode == 200) {
+      //       console.log(body);
+      //     }
+      //   }
+      // );
       console.log('SEND TO SAP')
     }
 
