@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 let mongodb = require('../../function/mongodbBP12GAS');
 var axios = require('axios');
+var request = require('request');
 
 let masterDB = "master_IC";
 let PATTERN = "PATTERN";
@@ -239,6 +240,28 @@ async function completedata(CHARG, CUST_LOT) {
 
     }
     console.log(gogo);
+    if (gogo) {
+      request.post(
+        'http://tp-portal.thaiparker.co.th/API_QcReport/ZBAPI_getZPPIN006_IN_BP_GAS',
+        {
+          json: {
+            "PERNR_ID": "135026",
+            "AUARTID": "ZGB1",
+            "P_MATNR": `0000000000${DATA[0]['MATNR']}`,
+            "P_CHARG": `${CHARG}`,
+            "P_BWART": "321"
+          }
+
+        },
+        function (error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log(body);
+          }
+        }
+
+      );
+    }
+    console.log('SEND TO SAP')
   }
 
 
