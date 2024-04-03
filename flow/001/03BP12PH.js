@@ -248,7 +248,7 @@ async function completedata(CHARG, CUST_LOT) {
         'http://tp-portal.thaiparker.co.th/API_QcReport/ZBAPI_getZPPIN006_IN',
         {
           json: {
-            "PERNR_ID": "1640487",
+            "PERNR_ID": `${DATA[0]['UserNO']}`,
             "AUARTID": "ZPH1",
             "P_MATNR": `0000000000${DATA[0]['MATNR']}`,
             "P_CHARG": `${CHARG}`,
