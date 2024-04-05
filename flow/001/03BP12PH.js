@@ -79,9 +79,9 @@ router.post('/03BP12PH/GETdata', async (req, res) => {
 
   //-------------------------------------
   let output = []
-  //CUST_LOT
-  if (input['CHARG'] != undefined, input['CUST_LOT'] != undefined) {
-    output = await mongodb.find(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` });
+  //CUST_LOT/MATNR
+  if (input['CHARG'] != undefined && input['CUST_LOT'] != undefined&& input['MATNR'] != undefined) {
+    output = await mongodb.find(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` , "MATNR": `${input['MATNR']}` });
     completedata(input['CHARG'], input['CUST_LOT'])
   }
 
@@ -101,9 +101,9 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
   let output = {
     "status": "NOK",
   }
-  if (input['CHARG'] != undefined, input['CUST_LOT'] != undefined) {
+  if (input['CHARG'] != undefined && input['CUST_LOT'] != undefined && input['MATNR'] != undefined) {
 
-    DATA = await mongodb.find(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` });
+    DATA = await mongodb.find(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` , "MATNR": `${input['MATNR']}` });
     if (DATA.length === 0) {
       let datainside = {
         "ITEMcode": input['ITEMcode'],
@@ -196,7 +196,7 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
       }
 
 
-      let SET = await mongodb.update(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` }, { $set: dataset });
+      let SET = await mongodb.update(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` , "MATNR": `${input['MATNR']}`}, { $set: dataset });
       completedata(input['CHARG'], input['CUST_LOT'])
     }
 
