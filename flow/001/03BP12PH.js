@@ -216,7 +216,7 @@ router.post('/03BP12PH/test', async (req, res) => {
   //-------------------------------------
   let output = []
   //CUST_LOT
-  if (input['CHARG'] != undefined, input['CUST_LOT'] != undefined) {
+  if (input['CHARG'] != undefined && input['CUST_LOT'] != undefined && input['MATNR'] != undefined) {
     completedata(input['CHARG'], input['CUST_LOT'])
   }
 
