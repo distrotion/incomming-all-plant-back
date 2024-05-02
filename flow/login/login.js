@@ -62,6 +62,37 @@ router.post('/login', async (req, res) => {
     return res.json(output);
 });
 
+router.post('/re_login', async (req, res) => {
+    //-------------------------------------
+    console.log(req.body);
+    let input = req.body;
+    //-------------------------------------
+    let output = {"return":'NOK'}
+    let findDB = await mongodb.find(Auth,user,{"ID":input['ID']});
+
+    if(findDB.length > 0){
+
+        
+            output = {
+                "ID":findDB[0]['ID'],
+                "NAME":findDB[0]['NAME'],
+                "LV":findDB[0]['LV'] || '1',
+                "return":'OK',
+
+                "Section":findDB[0]['Section'],
+                "Def":findDB[0]['Def'],
+                "LOCATION":findDB[0]['LOCATION'],
+            
+            }
+     
+
+        
+    }
+    
+    console.log(output)
+    return res.json(output);
+});
+
 router.post('/newpass', async (req, res) => {
     //-------------------------------------
     console.log(req.body);
