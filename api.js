@@ -9,9 +9,9 @@ router.use(require("./flow/001/03BP12PH"));
 // router.use(require("./flow/001/05BP12KNG"));
 // router.use(require("./flow/001/06BP12PVD"));
 router.use(require("./flow/001/07HESGAS"));
-// router.use(require("./flow/001/08HESPH"));
+router.use(require("./flow/001/08HESPH"));
 router.use(require("./flow/001/09HESISN"));
-// router.use(require("./flow/001/10HESPAL"));
+router.use(require("./flow/001/10HESPAL"));
 
 //INSFINISH getsap
 // router.use(require("./flow/004/flow004"))
