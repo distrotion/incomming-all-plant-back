@@ -108,6 +108,7 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
       let datainside = {
         "ITEMcode": input['ITEMcode'],
         "status": input['ITEMstatus'],
+        "DATAINPUT":input['DATAINPUT'],
         // "specialAccStatus": input['ITEMspecialAccStatus'],
         // "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
         // "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
@@ -145,6 +146,7 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
         dataset[`specialAcc-${input['ITEMcode']}`] = {
           "ITEMcode": input['ITEMcode'],
           "status": input['ITEMstatus'],
+          "DATAINPUT":input['DATAINPUT'],
           "specialAccStatus": input['ITEMspecialAccStatus'],
           "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
           "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
@@ -164,6 +166,7 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
       let datainside = {
         "ITEMcode": input['ITEMcode'],
         "status": input['ITEMstatus'],
+        "DATAINPUT":input['DATAINPUT'],
         // "specialAccStatus": input['ITEMspecialAccStatus'],
         // "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
         // "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
@@ -183,6 +186,7 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
         dataset[`specialAcc-${input['ITEMcode']}`] = {
           "ITEMcode": input['ITEMcode'],
           "status": input['ITEMstatus'],
+          "DATAINPUT":input['DATAINPUT'],
           "specialAccStatus": input['ITEMspecialAccStatus'],
           "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
           "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
