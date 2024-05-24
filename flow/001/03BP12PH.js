@@ -211,6 +211,132 @@ router.post('/03BP12PH/SETgood', async (req, res) => {
   return res.json(output);
 });
 
+router.post('/03BP12PH/SETgoodandDATA', async (req, res) => {
+  //-------------------------------------
+  console.log("----03BP12PH/SETgood----");
+  console.log(req.body);
+  let input = req.body;
+
+  let DATA = [];
+
+  //-------------------------------------
+  let output = {
+    "status": "NOK",
+  }
+  if (input['CHARG'] != undefined && input['CUST_LOT'] != undefined && input['MATNR'] != undefined& input['DATASET'] != undefined) {
+
+    DATA = await mongodb.find(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` , "MATNR": `${input['MATNR']}` });
+    if (DATA.length === 0) {
+      let datainside = {
+        "ITEMcode": input['ITEMcode'],
+        "status": input['ITEMstatus'],
+        "DATAINPUT":input['DATAINPUT'],
+        // "specialAccStatus": input['ITEMspecialAccStatus'],
+        // "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
+        // "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
+        // "specialAccPic01": input['ITEMspecialAccPic01'],
+        // "specialAccPic02": input['ITEMspecialAccPic02'],
+        // "specialAccPic03": input['ITEMspecialAccPic03'],
+        // "specialAccPic04": input['ITEMspecialAccPic04'],
+        // "specialAccPic05": input['ITEMspecialAccPic05'],
+        "DATASET":input['DATASET'],
+        "TS": Date.now()
+      }
+      let dataset =
+      {
+        "MATNR": input['MATNR'],
+        "CHARG": input['CHARG'],
+        "MBLNR": input['MBLNR'],
+        "BWART": input['BWART'],
+        "MENGE": input['MENGE'],
+        "MEINS": input['MEINS'],
+        "MAT_FG": input['MAT_FG'],
+        "KUNNR": input['KUNNR'],
+        "SORTL": input['SORTL'],
+        "NAME1": input['NAME1'],
+        "CUST_LOT": input['CUST_LOT'],
+        "PART_NM": input['PART_NM'],
+        "PART_NO": input['PART_NO'],
+        "PROCESS": input['PROCESS'],
+        "OLDMAT_CP": input['OLDMAT_CP'],
+        "STATUS": input['STATUS'],
+        "UserNO": input['UserNO'],
+        "ListITEM": input['ListITEM'],
+        "TS": Date.now()
+      }
+      dataset[input['ITEMcode']] = datainside;
+      if (input['ITEMstatus'] === 'WAIT') {
+        dataset[`specialAcc-${input['ITEMcode']}`] = {
+          "ITEMcode": input['ITEMcode'],
+          "status": input['ITEMstatus'],
+          "DATAINPUT":input['DATAINPUT'],
+          "specialAccStatus": input['ITEMspecialAccStatus'],
+          "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
+          "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
+          "specialAccPic01": input['ITEMspecialAccPic01'],
+          "specialAccPic02": input['ITEMspecialAccPic02'],
+          "specialAccPic03": input['ITEMspecialAccPic03'],
+          "specialAccPic04": input['ITEMspecialAccPic04'],
+          "specialAccPic05": input['ITEMspecialAccPic05'],
+          "DATASET":input['DATASET'],
+          "TS": Date.now()
+        };
+      }
+
+      let SET = await mongodb.insertMany(MAININC, MAIN, [dataset]);
+      completedata(input['CHARG'], input['CUST_LOT'])
+    } else {
+
+      let datainside = {
+        "ITEMcode": input['ITEMcode'],
+        "status": input['ITEMstatus'],
+        "DATAINPUT":input['DATAINPUT'],
+        // "specialAccStatus": input['ITEMspecialAccStatus'],
+        // "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
+        // "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
+        // "specialAccPic01": input['ITEMspecialAccPic01'],
+        // "specialAccPic02": input['ITEMspecialAccPic02'],
+        // "specialAccPic03": input['ITEMspecialAccPic03'],
+        // "specialAccPic04": input['ITEMspecialAccPic04'],
+        // "specialAccPic05": input['ITEMspecialAccPic05'],
+        "DATASET":input['DATASET'],
+        "TS": Date.now()
+      }
+      let dataset =
+      {
+        "TS": Date.now()
+      }
+      dataset[input['ITEMcode']] = datainside;
+      if (input['ITEMstatus'] === 'WAIT') {
+        dataset[`specialAcc-${input['ITEMcode']}`] = {
+          "ITEMcode": input['ITEMcode'],
+          "status": input['ITEMstatus'],
+          "DATAINPUT":input['DATAINPUT'],
+          "specialAccStatus": input['ITEMspecialAccStatus'],
+          "specialAccCOMMENT": input['ITEMspecialAccCOMMENT'],
+          "specialAccPiecesSelected": input['ITEMsPiecesSelected'],
+          "specialAccPic01": input['ITEMspecialAccPic01'],
+          "specialAccPic02": input['ITEMspecialAccPic02'],
+          "specialAccPic03": input['ITEMspecialAccPic03'],
+          "specialAccPic04": input['ITEMspecialAccPic04'],
+          "specialAccPic05": input['ITEMspecialAccPic05'],
+          "DATASET":input['DATASET'],
+          "TS": Date.now()
+        };
+      }
+
+
+      let SET = await mongodb.update(MAININC, MAIN, { "CHARG": `${input['CHARG']}`, "CUST_LOT": `${input['CUST_LOT']}` , "MATNR": `${input['MATNR']}`}, { $set: dataset });
+      completedata(input['CHARG'], input['CUST_LOT'])
+    }
+
+
+  }
+
+
+  return res.json(output);
+});
+
 router.post('/03BP12PH/test', async (req, res) => {
   //-------------------------------------
   console.log("----03BP12PH/test----");
