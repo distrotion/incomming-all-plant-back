@@ -82,6 +82,8 @@ router.post('/re_login', async (req, res) => {
                 "Section":findDB[0]['Section'],
                 "Def":findDB[0]['Def'],
                 "LOCATION":findDB[0]['LOCATION'],
+                "LOCATION":findDB[0]['LOCATION']||"",
+                "SIGNATURE":findDB[0]['SIGNATURE']||"",
             
             }
      
